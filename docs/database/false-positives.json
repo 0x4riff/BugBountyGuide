@@ -1,0 +1,90 @@
+﻿{
+  "database": {
+    "name": "False Positive Database",
+    "description": "Common patterns that look like vulnerabilities but are usually not exploitable without additional evidence",
+    "version": "1.0.0",
+    "last_updated": "2026-07-12",
+    "entries": [
+      {
+        "id": "FP-001",
+        "pattern": "HTTP 500 without sensitive data",
+        "description": "Server error responses that do not leak internal paths, stack traces, or user data",
+        "verdict": "not_a_vulnerability",
+        "reason": "Requires proof of sensitive information disclosure or denial of service impact",
+        "control": "Check response body for internal paths, credentials, or user data"
+      },
+      {
+        "id": "FP-002",
+        "pattern": "Internal hostname in response without reachable service",
+        "description": "Response contains internal server names or Kubernetes pod identifiers that cannot be accessed externally",
+        "verdict": "informative",
+        "reason": "No exploit path without network access to internal infrastructure",
+        "control": "Attempt to reach the hostname externally; check for SSRF or DNS rebinding vectors"
+      },
+      {
+        "id": "FP-003",
+        "pattern": "CORS header without credentialed readable response",
+        "description": "Access-Control-Allow-Origin: * or specific origin but response contains no sensitive data or requires authentication",
+        "verdict": "not_a_vulnerability",
+        "reason": "CORS misconfiguration requires sensitive data in credentialed response",
+        "control": "Test with credentials (cookies, Authorization header) and check for sensitive data in response"
+      },
+      {
+        "id": "FP-004",
+        "pattern": "Response size difference alone",
+        "description": "Different response lengths for different inputs without confirming vulnerability type",
+        "verdict": "lead",
+        "reason": "Size difference is a signal, not a vulnerability; requires classification",
+        "control": "Analyze response content, timing, error messages to classify the anomaly"
+      },
+      {
+        "id": "FP-005",
+        "pattern": "CSRF token expiry interpreted as auth bypass",
+        "description": "Request fails with stale CSRF token, succeeds with fresh token",
+        "verdict": "not_a_vulnerability",
+        "reason": "CSRF tokens are designed to expire; this is expected security behavior",
+        "control": "Test with fresh token; check if token is tied to session or can be reused cross-user"
+      },
+      {
+        "id": "FP-006",
+        "pattern": "JWT that decodes but signature unverified",
+        "description": "JWT payload is readable (base64) but signature validation is not tested",
+        "verdict": "lead",
+        "reason": "Decoding is not exploitation; must prove signature bypass or algorithm confusion",
+        "control": "Test algorithm switching (RS256->HS256), empty signature, or key confusion"
+      },
+      {
+        "id": "FP-007",
+        "pattern": "Scanner signature without manual reproduction",
+        "description": "Automated scanner reports a finding that cannot be manually verified",
+        "verdict": "candidate",
+        "reason": "Scanner false positives are common; manual reproduction required",
+        "control": "Follow scanner evidence path; craft manual request matching scanner behavior"
+      },
+      {
+        "id": "FP-008",
+        "pattern": "GraphQL introspection enabled",
+        "description": "GraphQL endpoint returns schema via introspection query",
+        "verdict": "informative",
+        "reason": "Introspection is often intended for API discovery; rarely a security issue in production",
+        "control": "Check if introspection is disabled in production or if sensitive operations are exposed"
+      },
+      {
+        "id": "FP-009",
+        "pattern": "Version disclosure in headers or error pages",
+        "description": "Server or framework version visible in Server header, X-Powered-By, or error messages",
+        "verdict": "informative",
+        "reason": "Version alone is not exploitable; requires known CVE for that specific version",
+        "control": "Cross-reference version with CVE databases; test for known vulnerabilities"
+      },
+      {
+        "id": "FP-010",
+        "pattern": "Missing security headers",
+        "description": "Absence of X-Frame-Options, Content-Security-Policy, Strict-Transport-Security, etc.",
+        "verdict": "informative",
+        "reason": "Missing headers are hardening recommendations, not vulnerabilities without exploit proof",
+        "control": "Demonstrate concrete attack (clickjacking, XSS) that the header would prevent"
+      }
+    ]
+  }
+}

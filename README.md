@@ -79,6 +79,26 @@ To run the visual panel on your OpenClaw node:
    `
 3. Configure your scope settings in the GUI, click **Generate**, verify safety check statuses, and click **Copy Manifest** to paste straight into your local workspace.
 
+## Advanced tooling
+
+- **[Progress tracker](assets/canvas/progress.html)** — Real-time engagement progress dashboard (Canvas).
+- **[Evidence manager](scripts/lib/evidence_manager.py)** — Capture, hash, redact, and organize evidence.
+- **[Scope discovery](scripts/lib/scope_discovery.py)** — Resolve wildcards and enumerate concrete assets.
+- **[Test runner](scripts/lib/test_runner.py)** — Execute hypothesis tests with rate limiting and stop conditions.
+- **[Auto-deploy](scripts/lib/auto_deploy.py)** — Sync findings to GitHub issues or cloud storage.
+- **[False-positive database](docs/database/false-positives.json)** — Common false-positive patterns and controls.
+
+### Evidence workflow
+
+`ash
+python scripts/lib/evidence_manager.py capture request-001 < response.txt
+python scripts/lib/evidence_manager.py list
+``n
+### Test runner with rate limiting
+
+`ash
+python scripts/lib/test_runner.py engagements/acme/findings/HYP-001.json 2.0
+``n
 ## Repository architecture
 
 ```text
