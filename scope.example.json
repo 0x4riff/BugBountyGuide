@@ -1,0 +1,13 @@
+﻿{
+  "program": "Example Program",
+  "authorization_url": "https://example.com/security-policy",
+  "authorization_confirmed": true,
+  "assets": ["app.example.com"],
+  "excluded_assets": [],
+  "allowed_tests": ["web", "api"],
+  "prohibited_tests": ["dos", "social-engineering", "credential-attacks"],
+  "max_requests_per_second": 2,
+  "required_header": "",
+  "accounts_owned": 2,
+  "notes": "Synthetic data only"
+}

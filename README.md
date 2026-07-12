@@ -1,4 +1,4 @@
-﻿# Bug Bounty Guide
+# Bug Bounty Guide
 
 [![License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE)
 [![Ethical Research](https://img.shields.io/badge/research-authorized_only-success.svg)](SECURITY.md)
@@ -17,6 +17,23 @@ Many tip collections optimize for payload volume. This guide optimizes for **sig
 - Beginner-friendly workflow with decision gates
 - No target lists, stolen secrets, destructive payloads, or scanner spam
 
+## Use as OpenClaw AgentSkill
+
+This repository now includes a triggerable `SKILL.md`, deterministic authorization guard, multi-agent playbook, engagement template, and report template.
+
+Example request after installing skill:
+
+```text
+Use AI Bug Bounty Guide to review program policy at <policy URL>, build scope manifest, then propose passive recon and safe test hypotheses for explicitly authorized assets. Do not run active tests until scope guard passes.
+```
+
+Validate example manifest:
+
+```bash
+python scripts/scope_guard.py scope.example.json
+```
+
+Agent does not accept “scan example.com” as authorization. Policy URL or written permission remains mandatory.
 ## Start here
 
 1. [Rules of engagement](docs/00-rules-of-engagement.md)
