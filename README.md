@@ -63,6 +63,33 @@ python scripts/bbg.py validate acme
 python scripts/bbg.py score engagements/acme/findings/HYP-001.json
 python scripts/bbg.py report acme
 ``n
+## Extended tooling
+
+- **[CVSS calculator](scripts/lib/cvss_calculator.py)** — Compute CVSS v3.1 score from vector string.
+- **[Time tracker](scripts/lib/time_tracker.py)** — Log time per engagement phase.
+- **[Attack surface map](assets/canvas/surface-map.html)** — Visual endpoint risk heatmap (Canvas).
+
+### CVSS calculator
+
+`ash
+python scripts/lib/cvss_calculator.py CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
+# Score: 6.5 / Severity: Medium
+``n
+### Time tracking
+
+`ash
+python scripts/lib/time_tracker.py acme start recon
+python scripts/lib/time_tracker.py acme stop
+python scripts/lib/time_tracker.py acme summary
+``n
+### Unified CLI (extended)
+
+`ash
+python scripts/bbg.py list
+python scripts/bbg.py dashboard
+python scripts/bbg.py export acme
+python scripts/bbg.py import acme extra-findings.json
+``n
 ## macOS/iOS Visual Interface (Canvas Dashboard)
 
 The repository features an Apple-style interactive Control Center dashboard built with OpenClaw Canvas. This interface simplifies manual scope.json manifest generation and verification with instant visual feedbacks.
