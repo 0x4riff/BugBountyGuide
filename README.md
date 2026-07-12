@@ -46,6 +46,23 @@ uv run python scripts/scope_guard.py scope.example.json
 
 Full setup: **[OpenClaw quickstart](docs/workflows/openclaw-quickstart.md)**.
 
+## Reference toolkit
+
+- **[Glossary](docs/reference/glossary.md)** — Precise definitions for agents and humans.
+- **[Cheatsheet](docs/reference/cheatsheet.md)** — Fast pre-flight and reporting checklist.
+- **[Test-plan template](docs/reference/test-plan-template.md)** — Copy-ready per-hypothesis plan.
+- **[Finding schema](schemas/finding-schema.json)** — Structured finding record for pipelines.
+- **[Unified CLI](scripts/bbg.py)** — init, validate, score, report for engagement folders.
+- **[Changelog](CHANGELOG.md)** — Version history.
+
+### CLI quick use
+
+`ash
+python scripts/bbg.py init acme
+python scripts/bbg.py validate acme
+python scripts/bbg.py score engagements/acme/findings/HYP-001.json
+python scripts/bbg.py report acme
+``n
 ## macOS/iOS Visual Interface (Canvas Dashboard)
 
 The repository features an Apple-style interactive Control Center dashboard built with OpenClaw Canvas. This interface simplifies manual scope.json manifest generation and verification with instant visual feedbacks.

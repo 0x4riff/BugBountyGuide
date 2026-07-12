@@ -1,0 +1,7 @@
+﻿{
+  "ratelimit_rps": 1.0,
+  "strict_stop": true,
+  "researcher_header": "X-Researcher: 0x4riff",
+  "preferred_evidence_format": "markdown",
+  "minimum_confidence_to_report": "validated"
+}
