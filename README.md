@@ -46,6 +46,22 @@ uv run python scripts/scope_guard.py scope.example.json
 
 Full setup: **[OpenClaw quickstart](docs/workflows/openclaw-quickstart.md)**.
 
+## macOS/iOS Visual Interface (Canvas Dashboard)
+
+The repository features an Apple-style interactive Control Center dashboard built with OpenClaw Canvas. This interface simplifies manual scope.json manifest generation and verification with instant visual feedbacks.
+
+To run the visual panel on your OpenClaw node:
+
+1. Copy the visual interface to your canvas root folder:
+   `ash
+   python scripts/canvas_launcher.py
+   `
+2. Execute the present command in your OpenClaw session:
+   `	ext
+   canvas(action='present', url='/__openclaw__/canvas/bug_bounty_guide_dashboard.html')
+   `
+3. Configure your scope settings in the GUI, click **Generate**, verify safety check statuses, and click **Copy Manifest** to paste straight into your local workspace.
+
 ## Repository architecture
 
 ```text
