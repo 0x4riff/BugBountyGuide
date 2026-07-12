@@ -1,85 +1,94 @@
-# Bug Bounty Guide
+<p align="center"><img src="assets/brand/hero.svg" alt="Bug Bounty Guide" width="100%"></p>
+<p align="center"><a href="SKILL.md"><strong>AgentSkill</strong></a> · <a href="docs/workflows/openclaw-quickstart.md"><strong>Quickstart</strong></a> · <a href="docs/workflows/advanced-operating-model.md"><strong>Operating model</strong></a> · <a href="docs/07-validation.md"><strong>Validation</strong></a> · <a href="docs/08-reporting.md"><strong>Reporting</strong></a></p>
+<p align="center"><img alt="License" src="https://img.shields.io/badge/content-CC_BY_4.0-c9a96e?style=flat-square"> <img alt="OpenClaw" src="https://img.shields.io/badge/OpenClaw-AgentSkill-111827?style=flat-square"> <img alt="Policy" src="https://img.shields.io/badge/research-authorized_only-1f6f5f?style=flat-square"> <img alt="Method" src="https://img.shields.io/badge/method-evidence_driven-374151?style=flat-square"></p>
 
-[![License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE)
-[![Ethical Research](https://img.shields.io/badge/research-authorized_only-success.svg)](SECURITY.md)
+## A field guide built for agents — governed by humans
 
-Practical, scope-first field guide for finding and reporting web/API vulnerabilities with reproducible evidence and low false-positive rates.
+**Bug Bounty Guide** turns vague “scan this target” requests into controlled, auditable research engagements. OpenClaw and compatible AI agents receive an operational contract: establish authorization, map boundaries, design minimal experiments, challenge evidence, report precisely, then stop.
 
-> Test only assets and actions explicitly authorized by program policy. Stop when evidence is sufficient. Never access, alter, or retain other users' data.
+> **Permission precedes capability.** A hostname is never authorization. Active testing remains blocked until explicit scope evidence is recorded and safety gate passes.
 
-## Why this guide
+<p align="center"><img src="assets/brand/workflow.svg" alt="Seven-phase operational workflow" width="100%"></p>
 
-Many tip collections optimize for payload volume. This guide optimizes for **signal, validation, and report quality**.
+## What makes it different
 
-- Modern web, API, GraphQL, OAuth/OIDC, cache, race-condition, and business-logic coverage
-- False-positive controls beside each testing phase
-- Safe proof patterns using own accounts and synthetic data
-- Beginner-friendly workflow with decision gates
-- No target lists, stolen secrets, destructive payloads, or scanner spam
+| Principle | Operational effect |
+|---|---|
+| **Fail-closed authorization** | `scope_guard.py` blocks incomplete or unsafe manifests. |
+| **Artifacts over improvisation** | Every phase produces reviewable output before next transition. |
+| **One controlled executor** | Multi-agent teams cannot silently multiply target traffic. |
+| **Falsification first** | Validator tries to disprove candidate before submission. |
+| **Minimum viable proof** | Research stops when impact is safely demonstrated. |
+| **Quality over volume** | Optimize validated findings, not scanner output. |
 
-## Use as OpenClaw AgentSkill
-
-This repository now includes a triggerable `SKILL.md`, deterministic authorization guard, multi-agent playbook, engagement template, and report template.
-
-Example request after installing skill:
+## Five-minute OpenClaw start
 
 ```text
-Use AI Bug Bounty Guide to review program policy at <policy URL>, build scope manifest, then propose passive recon and safe test hypotheses for explicitly authorized assets. Do not run active tests until scope guard passes.
+Use AI Bug Bounty Guide for program policy at <POLICY_URL>.
+First extract exact scope, exclusions, restrictions, and rate limits.
+Create scope.json and run scope guard.
+Do not send active target traffic until gate passes.
+Then produce passive inventory and ranked safe hypotheses only.
 ```
-
-Validate example manifest:
 
 ```bash
-python scripts/scope_guard.py scope.example.json
+uv run python scripts/scope_guard.py scope.example.json
 ```
 
-Agent does not accept “scan example.com” as authorization. Policy URL or written permission remains mandatory.
-## Start here
+Full setup: **[OpenClaw quickstart](docs/workflows/openclaw-quickstart.md)**.
 
-1. [Rules of engagement](docs/00-rules-of-engagement.md)
-2. [Methodology](docs/01-methodology.md)
-3. [Recon and attack-surface mapping](docs/02-recon.md)
-4. [Web testing](docs/03-web-testing.md)
-5. [API and GraphQL testing](docs/04-api-graphql.md)
-6. [Identity, OAuth, and sessions](docs/05-identity.md)
-7. [Business logic and race conditions](docs/06-business-logic.md)
-8. [Validation and false positives](docs/07-validation.md)
-9. [Reporting](docs/08-reporting.md)
-10. [Tooling and obsolete advice](docs/09-tooling.md)
-
-## Core loop
+## Repository architecture
 
 ```text
-Policy → Map → Hypothesis → Minimal test → Control test → Reproduce → Report → Stop
+BugBountyGuide/
+├── SKILL.md                  # Agent entry point and mandatory gates
+├── scripts/scope_guard.py    # Deterministic authorization check
+├── references/               # On-demand agent operating knowledge
+├── assets/                   # Engagement, report, visual templates
+├── docs/workflows/           # Advanced AI operating model
+├── docs/00–09                # Web/API field guide
+├── checklists/               # Human review controls
+└── scope.example.json        # Machine-readable manifest
 ```
 
-## High-signal habits
+## Operating model
 
-- Read policy before traffic generation; record prohibited test classes and rate limits.
-- Use two accounts you own when testing authorization boundaries.
-- Compare one variable at a time: identity, role, object ID, method, content type, or state.
-- Capture raw request/response plus timestamp, account role, and expected behavior.
-- Treat status-code differences as clues, not proof.
-- Prove impact with minimum data necessary; redact tokens and personal data.
-- Search public client code and official docs before labeling intended behavior a bypass.
-- Re-test from clean session and include negative control.
-- Prefer manual confirmation after automation; scanners produce leads, not findings.
-- Stop immediately if test touches real user data or service stability.
+1. **Authorize** — preserve policy evidence and exact boundaries.
+2. **Map** — inventory only assets with explicit scope match.
+3. **Model** — identify actors, objects, states, enforcement points.
+4. **Test** — change one variable using minimum request budget.
+5. **Validate** — run controls and eliminate alternatives.
+6. **Report** — separate observation, inference, impact, remediation.
+7. **Stop** — close after minimum reproducible proof.
 
-## Quick checklists
+Advanced detail: **[state machine, risk budget, confidence model, and quality metrics](docs/workflows/advanced-operating-model.md)**.
 
-- [Pre-test authorization](checklists/pre-test.md)
-- [Finding validation](checklists/validation.md)
-- [Report readiness](checklists/report-ready.md)
+## Multi-agent orchestration
+
+- **Coordinator** owns scope, request budget, transitions, and stop decision.
+- **Scope Agent** extracts policy; never tests target.
+- **Recon Agent** produces passive inventory and confidence labels.
+- **Test Planner** writes bounded experiments; never self-authorizes.
+- **Executor** alone sends approved traffic.
+- **Validator** attacks assumptions and false positives.
+- **Reporter** converts redacted evidence into concise submission.
+
+See [agent playbook](references/agent-playbook.md) and [hypothesis ledger](docs/workflows/hypothesis-ledger.md).
+
+## Field guide
+
+[Rules](docs/00-rules-of-engagement.md) · [Method](docs/01-methodology.md) · [Recon](docs/02-recon.md) · [Web](docs/03-web-testing.md) · [API/GraphQL](docs/04-api-graphql.md) · [Identity](docs/05-identity.md) · [Business logic](docs/06-business-logic.md) · [Validation](docs/07-validation.md) · [Reporting](docs/08-reporting.md) · [Tooling](docs/09-tooling.md)
+
+## Safety boundary
+
+Stop on real-user data, credentials, instability, third-party assets, irreversible change, or unclear authorization. No denial of service, phishing, credential attacks, persistence, malware, stealth/evasion, secret harvesting, or private-network/cloud-metadata probing unless program explicitly authorizes exact action.
 
 ## Contributing
 
-Corrections and safe techniques welcome. Every contribution needs source/rationale, validation controls, and clear authorization boundaries. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Original techniques welcome when they include scope boundary, safe test, controls, false-positive risks, and maintained references. Read [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Attribution
+## Attribution and license
 
-Original work maintained by [0x4riff](https://github.com/0x4riff). Inspired by public bug-bounty community knowledge, OWASP testing guides, PortSwigger Web Security Academy, and disclosed reports. This repository does not copy the unlicensed contents of `KingOfBugBountyTips`.
+Original work maintained by [0x4riff](https://github.com/0x4riff). Inspired by public security education including OWASP and PortSwigger Web Security Academy. Repository does not copy unlicensed contents from `KingOfBugBountyTips`.
 
-## Disclaimer
-
-Educational use and authorized security research only. You are responsible for complying with law, contracts, and program rules.
+Content licensed under [CC BY 4.0](LICENSE). Educational and authorized security research only.

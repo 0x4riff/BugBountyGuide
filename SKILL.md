@@ -1,4 +1,4 @@
-﻿---
+---
 name: ai-bug-bounty-guide
 description: "Authorized AI-assisted bug-bounty planning, scope validation, passive recon, safe testing, finding validation, and report drafting for web and API programs. Use when user asks to assess an explicitly authorized target or bug-bounty scope."
 license: CC-BY-4.0
