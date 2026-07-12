@@ -1,0 +1,25 @@
+﻿name: Technique proposal
+description: Suggest a safe, validated bug-bounty technique
+title: "[Technique]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: Purpose and security boundary
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Safe test and controls
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: False-positive risks
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Maintained references
+    validations:
+      required: true
