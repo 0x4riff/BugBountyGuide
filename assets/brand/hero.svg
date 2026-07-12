@@ -1,10 +1,89 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
-<title id="title">Bug Bounty Guide</title><desc id="desc">AI-assisted, scope-first security research framework</desc>
-<rect width="1200" height="420" fill="#0b0f19"/><path d="M0 340 C260 270 430 420 720 320 S1050 250 1200 300" fill="none" stroke="#1f2937" stroke-width="2"/>
-<g transform="translate(92 76)"><rect x="0" y="0" width="72" height="72" rx="16" fill="#111827" stroke="#c9a96e" stroke-width="2"/><path d="M36 15l20 8v15c0 14-8 24-20 30-12-6-20-16-20-30V23z" fill="none" stroke="#c9a96e" stroke-width="3"/><path d="M27 37l7 7 13-15" fill="none" stroke="#e5e7eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
-<text x="92" y="204" fill="#f3f4f6" font-family="Georgia, 'Times New Roman', serif" font-size="58" letter-spacing="1">Bug Bounty Guide</text>
-<text x="94" y="252" fill="#c9a96e" font-family="Arial, sans-serif" font-size="19" letter-spacing="5">AI-ASSISTED · SCOPE-FIRST · EVIDENCE-DRIVEN</text>
-<line x1="94" y1="285" x2="1106" y2="285" stroke="#374151"/>
-<text x="94" y="326" fill="#9ca3af" font-family="Arial, sans-serif" font-size="17">An operational framework for authorized web and API security research.</text>
-<text x="94" y="356" fill="#6b7280" font-family="Arial, sans-serif" font-size="14">Policy → Map → Hypothesis → Minimal Test → Validate → Report → Stop</text>
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="hero-title hero-desc">
+<title id="hero-title">Bug Bounty Guide</title>
+<desc id="hero-desc">AI-assisted, scope-first security research framework for authorized bug bounty testing</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0a0a1a"/>
+    <stop offset="50%" stop-color="#0d1117"/>
+    <stop offset="100%" stop-color="#0a0a1a"/>
+  </linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#f5d07a"/>
+    <stop offset="100%" stop-color="#b8860b"/>
+  </linearGradient>
+  <linearGradient id="shield-fill" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1a1a2e"/>
+    <stop offset="100%" stop-color="#0d0d1a"/>
+  </linearGradient>
+  <linearGradient id="glow" x1="0.5" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#c9a96e" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#c9a96e" stop-opacity="0"/>
+  </linearGradient>
+  <filter id="blur-glow">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="40"/>
+  </filter>
+  <filter id="soft-shadow">
+    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+  </filter>
+</defs>
+
+<!-- Background -->
+<rect width="1200" height="480" fill="url(#bg)"/>
+
+<!-- Subtle grid pattern -->
+<g opacity="0.03" stroke="#fff" stroke-width="0.5">
+  <line x1="0" y1="0" x2="0" y2="480"/><line x1="60" y1="0" x2="60" y2="480"/><line x1="120" y1="0" x2="120" y2="480"/>
+  <line x1="180" y1="0" x2="180" y2="480"/><line x1="240" y1="0" x2="240" y2="480"/><line x1="300" y1="0" x2="300" y2="480"/>
+  <line x1="360" y1="0" x2="360" y2="480"/><line x1="420" y1="0" x2="420" y2="480"/><line x1="480" y1="0" x2="480" y2="480"/>
+  <line x1="540" y1="0" x2="540" y2="480"/><line x1="600" y1="0" x2="600" y2="480"/><line x1="660" y1="0" x2="660" y2="480"/>
+  <line x1="720" y1="0" x2="720" y2="480"/><line x1="780" y1="0" x2="780" y2="480"/><line x1="840" y1="0" x2="840" y2="480"/>
+  <line x1="900" y1="0" x2="900" y2="480"/><line x1="960" y1="0" x2="960" y2="480"/><line x1="1020" y1="0" x2="1020" y2="480"/>
+  <line x1="1080" y1="0" x2="1080" y2="480"/><line x1="1140" y1="0" x2="1140" y2="480"/><line x1="1200" y1="0" x2="1200" y2="480"/>
+  <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/>
+  <line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="300" x2="1200" y2="300"/>
+  <line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="420" x2="1200" y2="420"/>
+</g>
+
+<!-- Glow orbs -->
+<circle cx="200" cy="200" r="180" fill="#c9a96e" opacity="0.04" filter="url(#blur-glow)"/>
+<circle cx="1000" cy="300" r="200" fill="#2563eb" opacity="0.03" filter="url(#blur-glow)"/>
+
+<!-- Decorative lines -->
+<line x1="80" y1="130" x2="80" y2="380" stroke="url(#gold)" stroke-width="3" opacity="0.4"/>
+<line x1="80" y1="130" x2="120" y2="130" stroke="url(#gold)" stroke-width="3" opacity="0.4"/>
+<line x1="80" y1="380" x2="120" y2="380" stroke="url(#gold)" stroke-width="3" opacity="0.4"/>
+
+<!-- Shield icon -->
+<g transform="translate(100, 170)" filter="url(#soft-shadow)">
+  <path d="M60 0 L120 30 L120 75 C120 120 90 150 60 165 C30 150 0 120 0 75 L0 30 Z" fill="url(#shield-fill)" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M60 25 L95 42 L95 72 C95 100 78 120 60 130 C42 120 25 100 25 72 L25 42 Z" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <!-- Checkmark -->
+  <path d="M38 78 L52 92 L82 58" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+<!-- Title text -->
+<text x="280" y="220" fill="#f3f4f6" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="700" letter-spacing="-1">Bug Bounty</text>
+<text x="280" y="290" fill="url(#gold)" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="700" letter-spacing="-1">Guide</text>
+
+<!-- Tagline -->
+<text x="282" y="340" fill="#9ca3af" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="400" letter-spacing="0.5">AI-assisted · Scope-first · Evidence-driven</text>
+
+<!-- Subtitle -->
+<text x="282" y="380" fill="#6b7280" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif" font-size="16">Operational framework for authorized web &amp; API security research</text>
+
+<!-- Version badge -->
+<g transform="translate(1060, 40)">
+  <rect width="80" height="28" rx="14" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.6"/>
+  <text x="40" y="18" fill="#c9a96e" font-family="monospace" font-size="12" text-anchor="middle" font-weight="600">v1.4.0</text>
+</g>
+
+<!-- Decorative dots -->
+<g fill="#c9a96e" opacity="0.15">
+  <circle cx="1100" cy="120" r="3"/><circle cx="1120" cy="140" r="2"/><circle cx="1080" cy="160" r="2.5"/>
+  <circle cx="1140" cy="180" r="1.5"/><circle cx="1060" cy="200" r="2"/><circle cx="1130" cy="220" r="3"/>
+</g>
+
+<!-- Bottom bar -->
+<rect x="0" y="460" width="1200" height="20" fill="#0a0a1a"/>
+<rect x="0" y="458" width="1200" height="2" fill="url(#gold)" opacity="0.2"/>
 </svg>

@@ -1,183 +1,305 @@
-﻿<p align="center"><img src="assets/brand/hero.svg" alt="Bug Bounty Guide" width="100%"></p>
-<p align="center"><a href="SKILL.md"><strong>AgentSkill</strong></a> · <a href="docs/workflows/openclaw-quickstart.md"><strong>Quickstart</strong></a> · <a href="docs/workflows/advanced-operating-model.md"><strong>Operating model</strong></a> · <a href="docs/07-validation.md"><strong>Validation</strong></a> · <a href="docs/08-reporting.md"><strong>Reporting</strong></a></p>
-<p align="center"><img alt="License" src="https://img.shields.io/badge/content-CC_BY_4.0-c9a96e?style=flat-square"> <img alt="OpenClaw" src="https://img.shields.io/badge/OpenClaw-AgentSkill-111827?style=flat-square"> <img alt="Policy" src="https://img.shields.io/badge/research-authorized_only-1f6f5f?style=flat-square"> <img alt="Method" src="https://img.shields.io/badge/method-evidence_driven-374151?style=flat-square"></p>
+﻿<p align="center">
+  <img src="assets/brand/hero.svg" alt="Bug Bounty Guide" width="100%">
+</p>
 
-## A field guide built for agents — governed by humans
+<p align="center">
+  <a href="SKILL.md"><img alt="AgentSkill" src="https://img.shields.io/badge/🤖_AgentSkill-Ready-111827?style=for-the-badge&labelColor=0d1117"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/📜_CC_BY_4.0-c9a96e?style=for-the-badge&labelColor=b8860b&color=f5d07a"></a>
+  <a href="docs/workflows/openclaw-quickstart.md"><img alt="Quickstart" src="https://img.shields.io/badge/⚡_Quickstart-5_min-2563eb?style=for-the-badge&labelColor=1d4ed8"></a>
+  <a href="docs/enterprise/compliance-mapping.md"><img alt="Enterprise" src="https://img.shields.io/badge/🏢_Enterprise-NIST_|_ISO_|_SOC2-16a34a?style=for-the-badge&labelColor=15803d"></a>
+</p>
 
-**Bug Bounty Guide** turns vague “scan this target” requests into controlled, auditable research engagements. OpenClaw and compatible AI agents receive an operational contract: establish authorization, map boundaries, design minimal experiments, challenge evidence, report precisely, then stop.
+<p align="center">
+  <strong>Bug Bounty Guide</strong> transforms vague <em>"scan this target"</em> requests into controlled, auditable research engagements.<br>
+  AI agents receive an operational contract: authorize → map → model → test → validate → report → stop.
+</p>
 
-> **Permission precedes capability.** A hostname is never authorization. Active testing remains blocked until explicit scope evidence is recorded and safety gate passes.
+<p align="center">
+  <img src="assets/brand/workflow.svg" alt="Seven-phase operational workflow" width="100%">
+</p>
 
-<p align="center"><img src="assets/brand/workflow.svg" alt="Seven-phase operational workflow" width="100%"></p>
+---
 
-## What makes it different
+## 🏗️ What Makes It Different
 
-| Principle | Operational effect |
-|---|---|
-| **Fail-closed authorization** | `scope_guard.py` blocks incomplete or unsafe manifests. |
-| **Artifacts over improvisation** | Every phase produces reviewable output before next transition. |
-| **One controlled executor** | Multi-agent teams cannot silently multiply target traffic. |
-| **Falsification first** | Validator tries to disprove candidate before submission. |
-| **Minimum viable proof** | Research stops when impact is safely demonstrated. |
-| **Quality over volume** | Optimize validated findings, not scanner output. |
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## Enterprise compliance and operations
+### 🛡️ Fail-Closed Authorization
+`scope_guard.py` blocks incomplete or unsafe manifests before any traffic is sent. A hostname is never authorization.
 
-The repository provides compliance alignment files and automated pipeline checks:
+### 📦 Artifacts Over Improvisation
+Every phase produces reviewable output before the next transition. No silent jumps.
 
-- **[Enterprise compliance mapping](docs/enterprise/compliance-mapping.md)** — Mappings for NIST SP 800-53 Rev. 5, ISO/IEC 27001:2022, and SOC 2 Type II (Trust Services Criteria).
-- **[CI/CD pipeline playbook](docs/enterprise/cicd-playbook.md)** — Integration guides for automating research checks, rate limiting, and scope enforcement in testing environments.
-- **[JSON Schema definition](schemas/scope-schema.json)** — Machine-readable validation rules for program definitions.
-- **[CI/CD validation workflow](.github/workflows/validate.yml)** — GitHub Actions pipeline config.
+### 🎯 Falsification First
+Validator tries to disprove every candidate before submission. Quality over volume.
 
-## Five-minute OpenClaw start
+</td>
+<td width="50%" valign="top">
 
-```text
-Use AI Bug Bounty Guide for program policy at <POLICY_URL>.
-First extract exact scope, exclusions, restrictions, and rate limits.
-Create scope.json and run scope guard.
-Do not send active target traffic until gate passes.
-Then produce passive inventory and ranked safe hypotheses only.
-```
+### 🔒 One Controlled Executor
+Multi-agent teams cannot silently multiply target traffic. One agent sends requests.
+
+### ✅ Minimum Viable Proof
+Research stops when impact is safely demonstrated. Not one request more.
+
+### 📊 Evidence-Driven
+Every finding carries redacted evidence, CWE/OWASP mapping, and CVSS scoring.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-uv run python scripts/scope_guard.py scope.example.json
+# 1. Clone
+git clone https://github.com/0x4riff/BugBountyGuide.git
+cd BugBountyGuide
+
+# 2. Validate scope
+python scripts/scope_guard.py scope.example.json
+
+# 3. Scaffold engagement
+python scripts/bbg.py init acme
+
+# 4. Score a finding
+python scripts/bbg.py score engagements/acme/findings/HYP-001.json
+
+# 5. Generate report
+python scripts/bbg.py report acme
 ```
 
-Full setup: **[OpenClaw quickstart](docs/workflows/openclaw-quickstart.md)**.
+📖 **Full setup:** [OpenClaw Quickstart](docs/workflows/openclaw-quickstart.md)
 
-## Reference toolkit
+---
 
-- **[Glossary](docs/reference/glossary.md)** — Precise definitions for agents and humans.
-- **[Cheatsheet](docs/reference/cheatsheet.md)** — Fast pre-flight and reporting checklist.
-- **[Test-plan template](docs/reference/test-plan-template.md)** — Copy-ready per-hypothesis plan.
-- **[Finding schema](schemas/finding-schema.json)** — Structured finding record for pipelines.
-- **[Unified CLI](scripts/bbg.py)** — init, validate, score, report for engagement folders.
-- **[Changelog](CHANGELOG.md)** — Version history.
+## 🧰 Unified CLI
 
-### CLI quick use
+One entry point for everything:
 
-`ash
-python scripts/bbg.py init acme
-python scripts/bbg.py validate acme
-python scripts/bbg.py score engagements/acme/findings/HYP-001.json
-python scripts/bbg.py report acme
-``n
-## Extended tooling
+| Command | Description |
+|:--------|:------------|
+| `bbg.py init <name>` | Scaffold engagement folder with scope.json + findings.json |
+| `bbg.py validate <name>` | Run scope guard on engagement |
+| `bbg.py score <file>` | Compute risk score (0–15) for a finding |
+| `bbg.py report <name>` | Generate markdown report from findings |
+| `bbg.py list` | List all engagements with status |
+| `bbg.py dashboard` | Global summary across all engagements |
+| `bbg.py export <name>` | Export findings to CSV |
+| `bbg.py import <name> <file>` | Import findings from JSON |
 
-- **[CVSS calculator](scripts/lib/cvss_calculator.py)** — Compute CVSS v3.1 score from vector string.
-- **[Time tracker](scripts/lib/time_tracker.py)** — Log time per engagement phase.
-- **[Attack surface map](assets/canvas/surface-map.html)** — Visual endpoint risk heatmap (Canvas).
-
-### CVSS calculator
-
-`ash
-python scripts/lib/cvss_calculator.py CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
-# Score: 6.5 / Severity: Medium
-``n
-### Time tracking
-
-`ash
-python scripts/lib/time_tracker.py acme start recon
-python scripts/lib/time_tracker.py acme stop
-python scripts/lib/time_tracker.py acme summary
-``n
-### Unified CLI (extended)
-
-`ash
-python scripts/bbg.py list
+```bash
 python scripts/bbg.py dashboard
-python scripts/bbg.py export acme
-python scripts/bbg.py import acme extra-findings.json
-``n
-## macOS/iOS Visual Interface (Canvas Dashboard)
+# engagements: 3
+# total findings: 12
+# avg risk score: 7.2/15
+```
 
-The repository features an Apple-style interactive Control Center dashboard built with OpenClaw Canvas. This interface simplifies manual scope.json manifest generation and verification with instant visual feedbacks.
+---
 
-To run the visual panel on your OpenClaw node:
+## 📐 Visual Dashboards (Canvas)
 
-1. Copy the visual interface to your canvas root folder:
-   `ash
-   python scripts/canvas_launcher.py
-   `
-2. Execute the present command in your OpenClaw session:
-   `	ext
-   canvas(action='present', url='/__openclaw__/canvas/bug_bounty_guide_dashboard.html')
-   `
-3. Configure your scope settings in the GUI, click **Generate**, verify safety check statuses, and click **Copy Manifest** to paste straight into your local workspace.
+Apple-style interactive dashboards for OpenClaw Canvas:
 
-## Advanced tooling
+| Dashboard | Purpose | File |
+|:----------|:--------|:-----|
+| **Control Center** | Generate scope.json manifests with instant validation | [`assets/canvas/dashboard.html`](assets/canvas/dashboard.html) |
+| **Progress Tracker** | Monitor engagement phases, findings, risk scores | [`assets/canvas/progress.html`](assets/canvas/progress.html) |
+| **Attack Surface Map** | Visual endpoint risk heatmap | [`assets/canvas/surface-map.html`](assets/canvas/surface-map.html) |
 
-- **[Progress tracker](assets/canvas/progress.html)** — Real-time engagement progress dashboard (Canvas).
-- **[Evidence manager](scripts/lib/evidence_manager.py)** — Capture, hash, redact, and organize evidence.
-- **[Scope discovery](scripts/lib/scope_discovery.py)** — Resolve wildcards and enumerate concrete assets.
-- **[Test runner](scripts/lib/test_runner.py)** — Execute hypothesis tests with rate limiting and stop conditions.
-- **[Auto-deploy](scripts/lib/auto_deploy.py)** — Sync findings to GitHub issues or cloud storage.
-- **[False-positive database](docs/database/false-positives.json)** — Common false-positive patterns and controls.
+```bash
+# Launch on OpenClaw
+python scripts/canvas_launcher.py
+# Then in your session:
+canvas(action='present', url='/__openclaw__/canvas/bug_bounty_guide_dashboard.html')
+```
 
-### Evidence workflow
+---
 
-`ash
+## 🔬 Testing Toolkit
+
+### CVSS Calculator
+```bash
+python scripts/lib/cvss_calculator.py CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
+# Score: 6.3 / Severity: Medium
+```
+
+### Evidence Manager
+```bash
 python scripts/lib/evidence_manager.py capture request-001 < response.txt
 python scripts/lib/evidence_manager.py list
-``n
-### Test runner with rate limiting
-
-`ash
-python scripts/lib/test_runner.py engagements/acme/findings/HYP-001.json 2.0
-``n
-## Repository architecture
-
-```text
-BugBountyGuide/
-├── SKILL.md                  # Agent entry point and mandatory gates
-├── scripts/scope_guard.py    # Deterministic authorization check
-├── references/               # On-demand agent operating knowledge
-├── assets/                   # Engagement, report, visual templates
-├── docs/workflows/           # Advanced AI operating model
-├── docs/00–09                # Web/API field guide
-├── checklists/               # Human review controls
-└── scope.example.json        # Machine-readable manifest
 ```
 
-## Operating model
+### Test Runner (rate-limited)
+```bash
+python scripts/lib/test_runner.py engagements/acme/findings/HYP-001.json 2.0
+```
 
-1. **Authorize** — preserve policy evidence and exact boundaries.
-2. **Map** — inventory only assets with explicit scope match.
-3. **Model** — identify actors, objects, states, enforcement points.
-4. **Test** — change one variable using minimum request budget.
-5. **Validate** — run controls and eliminate alternatives.
-6. **Report** — separate observation, inference, impact, remediation.
-7. **Stop** — close after minimum reproducible proof.
+### Time Tracker
+```bash
+python scripts/lib/time_tracker.py acme start recon
+python scripts/lib/time_tracker.py acme summary
+```
 
-Advanced detail: **[state machine, risk budget, confidence model, and quality metrics](docs/workflows/advanced-operating-model.md)**.
+### Scope Discovery
+```bash
+python scripts/lib/scope_discovery.py scope.example.json
+```
 
-## Multi-agent orchestration
+### Auto-Deploy
+```bash
+python scripts/lib/auto_deploy.py engagements/acme 0x4riff/my-tracker
+```
 
-- **Coordinator** owns scope, request budget, transitions, and stop decision.
-- **Scope Agent** extracts policy; never tests target.
-- **Recon Agent** produces passive inventory and confidence labels.
-- **Test Planner** writes bounded experiments; never self-authorizes.
-- **Executor** alone sends approved traffic.
-- **Validator** attacks assumptions and false positives.
-- **Reporter** converts redacted evidence into concise submission.
+---
 
-See [agent playbook](references/agent-playbook.md) and [hypothesis ledger](docs/workflows/hypothesis-ledger.md).
+## 📚 Knowledge Base
 
-## Field guide
+Deep-dive articles per vulnerability class with CWE/OWASP mapping, safe payloads, remediation, and CVSS scoring:
 
-[Rules](docs/00-rules-of-engagement.md) · [Method](docs/01-methodology.md) · [Recon](docs/02-recon.md) · [Web](docs/03-web-testing.md) · [API/GraphQL](docs/04-api-graphql.md) · [Identity](docs/05-identity.md) · [Business logic](docs/06-business-logic.md) · [Validation](docs/07-validation.md) · [Reporting](docs/08-reporting.md) · [Tooling](docs/09-tooling.md)
+| Article | CWE | OWASP | CVSS |
+|:--------|:----|:------|:-----|
+| [IDOR & Access Control](docs/kb/idor-access-control.md) | CWE-639 | A01:2021 | 6.5 |
+| [SSRF](docs/kb/ssrf.md) | CWE-918 | A10:2021 | 7.2 |
+| [Injection (XSS/SQLi)](docs/kb/injection.md) | CWE-79/89/78 | A03:2021 | 6.1 |
+| [Business Logic](docs/kb/business-logic.md) | CWE-840 | A04:2021 | 5.4 |
+| [API Security](docs/kb/api-security.md) | CWE-284/306 | A01/A05 | 6.5 |
 
-## Safety boundary
+---
 
-Stop on real-user data, credentials, instability, third-party assets, irreversible change, or unclear authorization. No denial of service, phishing, credential attacks, persistence, malware, stealth/evasion, secret harvesting, or private-network/cloud-metadata probing unless program explicitly authorizes exact action.
+## 🏢 Enterprise Compliance
 
-## Contributing
+| Framework | Controls | Mapping |
+|:----------|:---------|:--------|
+| **NIST SP 800-53 Rev. 5** | RA-5, CA-2, CA-8, AC-6, SI-4 | [compliance-mapping.md](docs/enterprise/compliance-mapping.md) |
+| **ISO/IEC 27001:2022** | A.5.8, A.8.8, A.8.20, A.8.24 | [compliance-mapping.md](docs/enterprise/compliance-mapping.md) |
+| **SOC 2 Type II** | CC7.1, CC4.1 | [compliance-mapping.md](docs/enterprise/compliance-mapping.md) |
+| **CI/CD Pipeline** | GitHub Actions integration | [cicd-playbook.md](docs/enterprise/cicd-playbook.md) |
+
+---
+
+## 🧩 Reference Toolkit
+
+| Resource | Description |
+|:---------|:------------|
+| [Glossary](docs/reference/glossary.md) | Precise definitions for agents and humans |
+| [Cheatsheet](docs/reference/cheatsheet.md) | Fast pre-flight and reporting checklist |
+| [Test Plan Template](docs/reference/test-plan-template.md) | Copy-ready per-hypothesis plan |
+| [False-Positive Database](docs/database/false-positives.json) | 10 common patterns with verdict and controls |
+| [Finding Schema](schemas/finding-schema.json) | JSON Schema with CWE/OWASP/CVSS fields |
+| [Scope Schema](schemas/scope-schema.json) | Machine-readable scope validation rules |
+| [Changelog](CHANGELOG.md) | Version history |
+
+---
+
+## 🗂️ Repository Architecture
+
+```
+BugBountyGuide/
+├── SKILL.md                         # Agent entry point and mandatory gates
+├── scripts/
+│   ├── bbg.py                       # Unified CLI (init/validate/score/report/list/export)
+│   ├── scope_guard.py               # Deterministic authorization check
+│   ├── canvas_launcher.py           # Canvas dashboard deployer
+│   └── lib/
+│       ├── cvss_calculator.py       # CVSS v3.1 scoring
+│       ├── evidence_manager.py      # Capture, hash, redact evidence
+│       ├── scope_discovery.py       # Wildcard resolution
+│       ├── test_runner.py           # Rate-limited hypothesis testing
+│       ├── time_tracker.py          # Per-phase time logging
+│       └── auto_deploy.py           # GitHub issue sync
+├── schemas/
+│   ├── scope-schema.json            # Scope manifest schema
+│   └── finding-schema.json          # Finding record schema (CWE/OWASP/CVSS)
+├── docs/
+│   ├── 00-09                        # Web/API field guide (10 chapters)
+│   ├── kb/                          # Knowledge base per CWE class
+│   ├── workflows/                   # Advanced operating model
+│   ├── enterprise/                  # NIST/ISO/SOC2 compliance
+│   ├── reference/                   # Glossary, cheatsheet, templates
+│   └── database/                    # False-positive patterns
+├── assets/
+│   ├── brand/                       # Hero SVG, workflow diagram
+│   ├── canvas/                      # Interactive dashboards (3)
+│   ├── engagement-template.md       # Engagement plan template
+│   └── report-template.md           # Submission report template
+├── checklists/                      # Human review controls (3)
+├── references/                      # Agent playbook, validation gates
+├── scope.example.json               # Example scope manifest
+├── config.json                      # Global research configuration
+└── CHANGELOG.md                     # Version history
+```
+
+---
+
+## ⚙️ Operating Model
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    COORDINATOR                           │
+│  Owns scope, request budget, transitions, stop decision │
+└──────┬──────┬──────┬──────┬──────┬──────┬───────────────┘
+       │      │      │      │      │      │
+   ┌───▼──┐┌──▼───┐┌─▼────┐┌▼─────┐┌▼────┐┌▼──────┐
+   │Scope ││Recon ││Planner││Execu-││Vali-││Report-│
+   │Agent ││Agent ││       ││tor   ││dator││er     │
+   └──────┘└──────┘└───────┘└──────┘└─────┘└───────┘
+   Extract  Passive  Bounded    Alone   Attack  Redact
+   policy   inventory experiments sends  assump- evidence
+                     traffic    tions
+```
+
+**Seven-phase workflow:**
+1. **Authorize** — preserve policy evidence and exact boundaries
+2. **Map** — inventory only assets with explicit scope match
+3. **Model** — identify actors, objects, states, enforcement points
+4. **Test** — change one variable using minimum request budget
+5. **Validate** — run controls and eliminate alternatives
+6. **Report** — separate observation, inference, impact, remediation
+7. **Stop** — close after minimum reproducible proof
+
+Advanced detail: [state machine, risk budget, confidence model](docs/workflows/advanced-operating-model.md).
+
+---
+
+## 📖 Field Guide
+
+[Rules](docs/00-rules-of-engagement.md) · [Method](docs/01-methodology.md) · [Recon](docs/02-recon.md) · [Web](docs/03-web-testing.md) · [API/GraphQL](docs/04-api-graphql.md) · [Identity](docs/05-identity.md) · [Business Logic](docs/06-business-logic.md) · [Validation](docs/07-validation.md) · [Reporting](docs/08-reporting.md) · [Tooling](docs/09-tooling.md)
+
+---
+
+## 🚫 Safety Boundary
+
+> **Permission precedes capability.**
+
+**Stop on:** real-user data · credentials · instability · third-party assets · irreversible change · unclear authorization
+
+**Never:** DoS · phishing · credential attacks · persistence · malware · stealth/evasion · secret harvesting · private-network/cloud-metadata probing
+
+*Unless program explicitly authorizes the exact action.*
+
+---
+
+## 🤝 Contributing
 
 Original techniques welcome when they include scope boundary, safe test, controls, false-positive risks, and maintained references. Read [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Attribution and license
+---
 
-Original work maintained by [0x4riff](https://github.com/0x4riff). Inspired by public security education including OWASP and PortSwigger Web Security Academy. Repository does not copy unlicensed contents from `KingOfBugBountyTips`.
+## 📜 Attribution & License
+
+Maintained by [0x4riff](https://github.com/0x4riff). Inspired by public security education including OWASP and PortSwigger Web Security Academy. Repository does not copy unlicensed contents from `KingOfBugBountyTips`.
 
 Content licensed under [CC BY 4.0](LICENSE). Educational and authorized security research only.
+
+---
+
+<p align="center">
+  <img alt="OpenClaw" src="https://img.shields.io/badge/Built_for_OpenClaw-AgentSkill-111827?style=for-the-badge&labelColor=0d1117">
+  <img alt="Method" src="https://img.shields.io/badge/Method-Scope--First-1f6f5f?style=for-the-badge&labelColor=14532d">
+  <img alt="Research" src="https://img.shields.io/badge/Research-Authorized_Only-374151?style=for-the-badge&labelColor=1f2937">
+</p>
