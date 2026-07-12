@@ -1,0 +1,35 @@
+﻿name: CI Validate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jsonschema
+    - name: Validate example manifest
+      run: |
+        python scripts/scope_guard.py scope.example.json
+    - name: Verify skill structure
+      run: |
+        python -c "
+        import yaml
+        from pathlib import Path
+        text = Path('SKILL.md').read_text()
+        assert text.startswith('---\n'), 'Missing frontmatter'
+        fm = text.split('---', 2)[1]
+        yaml.safe_load(fm)
+        print('SKILL.md frontmatter valid')
+        "

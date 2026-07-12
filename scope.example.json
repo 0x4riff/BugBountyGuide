@@ -1,13 +1,13 @@
 ﻿{
-  "program": "Example Program",
-  "authorization_url": "https://example.com/security-policy",
+  "program": "Enterprise Program",
+  "authorization_url": "https://enterprise.example/security-policy",
   "authorization_confirmed": true,
-  "assets": ["app.example.com"],
+  "assets": ["app.enterprise.example"],
   "excluded_assets": [],
   "allowed_tests": ["web", "api"],
   "prohibited_tests": ["dos", "social-engineering", "credential-attacks"],
   "max_requests_per_second": 2,
-  "required_header": "",
+  "required_header": "X-Enterprise-Audit: research",
   "accounts_owned": 2,
-  "notes": "Synthetic data only"
+  "notes": "CI/CD automated run"
 }

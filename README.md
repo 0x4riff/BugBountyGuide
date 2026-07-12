@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/brand/hero.svg" alt="Bug Bounty Guide" width="100%"></p>
+﻿<p align="center"><img src="assets/brand/hero.svg" alt="Bug Bounty Guide" width="100%"></p>
 <p align="center"><a href="SKILL.md"><strong>AgentSkill</strong></a> · <a href="docs/workflows/openclaw-quickstart.md"><strong>Quickstart</strong></a> · <a href="docs/workflows/advanced-operating-model.md"><strong>Operating model</strong></a> · <a href="docs/07-validation.md"><strong>Validation</strong></a> · <a href="docs/08-reporting.md"><strong>Reporting</strong></a></p>
 <p align="center"><img alt="License" src="https://img.shields.io/badge/content-CC_BY_4.0-c9a96e?style=flat-square"> <img alt="OpenClaw" src="https://img.shields.io/badge/OpenClaw-AgentSkill-111827?style=flat-square"> <img alt="Policy" src="https://img.shields.io/badge/research-authorized_only-1f6f5f?style=flat-square"> <img alt="Method" src="https://img.shields.io/badge/method-evidence_driven-374151?style=flat-square"></p>
 
@@ -20,6 +20,15 @@
 | **Falsification first** | Validator tries to disprove candidate before submission. |
 | **Minimum viable proof** | Research stops when impact is safely demonstrated. |
 | **Quality over volume** | Optimize validated findings, not scanner output. |
+
+## Enterprise compliance and operations
+
+The repository provides compliance alignment files and automated pipeline checks:
+
+- **[Enterprise compliance mapping](docs/enterprise/compliance-mapping.md)** — Mappings for NIST SP 800-53 Rev. 5, ISO/IEC 27001:2022, and SOC 2 Type II (Trust Services Criteria).
+- **[CI/CD pipeline playbook](docs/enterprise/cicd-playbook.md)** — Integration guides for automating research checks, rate limiting, and scope enforcement in testing environments.
+- **[JSON Schema definition](schemas/scope-schema.json)** — Machine-readable validation rules for program definitions.
+- **[CI/CD validation workflow](.github/workflows/validate.yml)** — GitHub Actions pipeline config.
 
 ## Five-minute OpenClaw start
 

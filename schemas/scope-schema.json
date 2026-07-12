@@ -1,0 +1,93 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScopeManifest",
+  "description": "Enterprise-grade authorization and safety boundary definition for AI-assisted security research.",
+  "type": "OBJECT",
+  "properties": {
+    "program": {
+      "type": "STRING",
+      "description": "Name of the program or organization."
+    },
+    "authorization_url": {
+      "type": "STRING",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "HTTPS URL providing written public or private authorization evidence."
+    },
+    "authorization_confirmed": {
+      "type": "BOOLEAN",
+      "const": true,
+      "description": "Must be set to true by a human after manually reviewing policy."
+    },
+    "assets": {
+      "type": "ARRAY",
+      "items": {
+        "type": "STRING",
+        "pattern": "^[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"
+      },
+      "minItems": 1,
+      "description": "Explicitly authorized hostnames or IP addresses. Wildcards must be resolved to specific domains."
+    },
+    "excluded_assets": {
+      "type": "ARRAY",
+      "items": {
+        "type": "STRING"
+      },
+      "description": "Specifically excluded hostnames, IPs, or endpoints."
+    },
+    "allowed_tests": {
+      "type": "ARRAY",
+      "items": {
+        "type": "STRING"
+      },
+      "description": "Specifically permitted test classes."
+    },
+    "prohibited_tests": {
+      "type": "ARRAY",
+      "items": {
+        "type": "STRING",
+        "enum": [
+          "dos",
+          "social-engineering",
+          "credential-attacks",
+          "phishing",
+          "malware",
+          "physical-testing",
+          "rate-limiting-bypass-testing",
+          "destructive-testing",
+          "cloud-metadata-probing"
+        ]
+      },
+      "description": "Prohibited test classes. Must include the baseline security restrictions."
+    },
+    "max_requests_per_second": {
+      "type": "NUMBER",
+      "minimum": 0.1,
+      "maximum": 10.0,
+      "description": "Request rate budget for automation. Hard ceiling of 10.0 RPS."
+    },
+    "required_header": {
+      "type": "STRING",
+      "description": "Custom HTTP header required by policy to identify research traffic."
+    },
+    "accounts_owned": {
+      "type": "INTEGER",
+      "minimum": 2,
+      "description": "Number of owned accounts prepared. Minimum of 2 required for authorization testing."
+    },
+    "notes": {
+      "type": "STRING"
+    }
+  },
+  "required": [
+    "program",
+    "authorization_url",
+    "authorization_confirmed",
+    "assets",
+    "allowed_tests",
+    "prohibited_tests",
+    "max_requests_per_second",
+    "accounts_owned"
+  ],
+  "additionalProperties": false
+}
